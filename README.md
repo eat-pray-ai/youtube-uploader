@@ -2,6 +2,8 @@
 
 GitHub action to upload video to YouTube, powered by [yutu](https://github.com/eat-pray-ai/yutu).
 
+If you are looking for a more general action to interact with YouTube, please refer to [youtube-action](https://github.com/eat-pray-ai/youtube-action).
+
 ## Example
 
 ```yaml
@@ -22,7 +24,7 @@ jobs:
           echo "tag=eat-pray-ai,yutu🐰" >> $GITHUB_OUTPUT
           echo "playlistId=PL_if_required" >> $GITHUB_OUTPUT
       - name: upload video
-        uses: eat-pray-ai/yutu/actions/upload@main
+        uses: eat-pray-ai/youtube-uploader@main
         with:
           credential: ${{ secrets.YOUTUBE_CREDENTIAL }}
           token: ${{ secrets.YOUTUBE_TOKEN }}

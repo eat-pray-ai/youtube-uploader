@@ -34,7 +34,8 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: eat-pray-ai/yutu/actions/general@main
+    - id: upload
+      uses: eat-pray-ai/youtube-action@main
       with:
         version: ${{ inputs.version }}
         credential: ${{ inputs.credential }}
