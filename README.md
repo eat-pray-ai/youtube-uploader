@@ -76,6 +76,10 @@ base64 -w 0 youtube.token.json
 
 **Optional**, Comma separated list of tags for the video.
 
+### `output`
+
+**Optional**, Output format: `json`, `yaml` or `silent`.
+
 ### `rest-flags`
 
 **Optional**, Flags passed to yutu, such as `playlistId`, for all available flags when uploading a video:
@@ -101,6 +105,7 @@ Flags:
   -n, --notifySubscribers                      Notify the channel subscribers about the new video (default true)
   -b, --onBehalfOfContentOwner string
   -B, --onBehalfOfContentOwnerChannel string
+  -o, --output string                          json, yaml or silent
   -y, --playlistId string                      Playlist ID of the video
   -p, --privacy string                         Privacy status of the video: public, private, or unlisted
   -P, --publicStatsViewable                    Whether the extended video statistics can be viewed by everyone
@@ -110,3 +115,9 @@ Flags:
   -u, --thumbnail string                       Path to the thumbnail
   -t, --title string                           Title of the video
 ```
+
+## Outputs
+
+### `response`
+
+The response from yutu, in the format specified by [`output`](#output) flag.

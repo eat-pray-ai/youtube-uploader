@@ -27,9 +27,16 @@ inputs:
     description: 'Comma separated list of tags for the video'
     required: false
     default: ''
+  output:
+    description: 'Output format: json, yaml or silent'
   rest-flags:
     description: 'Flags passed to the command/subcommand'
     required: true
+
+outputs:
+  response:
+    description: 'Response from the yutu insert command'
+    value: ${{ steps.upload.outputs.response }}
 
 runs:
   using: composite
@@ -42,4 +49,4 @@ runs:
         token: ${{ inputs.token }}
         command: video
         subcommand: insert
-        flags: '-f ${{ inputs.file }} -t ${{ inputs.title }} -d "${{ inputs.description }}" -T ${{ inputs.tags }} ${{ inputs.rest-flags }}'
+        flags: '-f ${{ inputs.file }} -t ${{ inputs.title }} -d "${{ inputs.description }}" -T ${{ inputs.tags }} -o ${{ inputs.output }} ${{ inputs.rest-flags }}'
