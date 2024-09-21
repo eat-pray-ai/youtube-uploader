@@ -19,10 +19,12 @@ jobs:
         shell: bash
         run: |
           echo "generate video.mp4" // yutu.mp4
-          echo "title=yutu" >> $GITHUB_OUTPUT
-          echo "description=eat-pray-ai/yutu" >> $GITHUB_OUTPUT
-          echo "tag=eat-pray-ai,yutu🐰" >> $GITHUB_OUTPUT
-          echo "playlistId=PL_if_required" >> $GITHUB_OUTPUT
+          {
+            echo "title=yutu"
+            echo "description=eat-pray-ai/yutu"
+            echo "tags=eat-pray-ai,yutu🐰"
+            echo "playlistId=PL_if_required"
+          } >> $GITHUB_OUTPUT
       - name: upload video
         uses: eat-pray-ai/youtube-uploader@main
         with:
@@ -30,8 +32,10 @@ jobs:
           token: ${{ secrets.YOUTUBE_TOKEN }}
           file: "./${{ steps.generate.outputs.title }}.mp4"
           title: ${{ steps.generate.outputs.title }}
-          description: ${{ steps.generate.outputs.description }}
-          tags: ${{ steps.generate.outputs.tag }}
+          desc: ${{ steps.generate.outputs.description }}
+          tags: ${{ steps.generate.outputs.tags }}
+          rate: like
+          comment: "cool!"
           rest-flags: "-y ${{ steps.generate.outputs.playlistId }} -p public -g 22"
 ```
 ## Inputs
@@ -68,13 +72,21 @@ base64 -w 0 youtube.token.json
 
 **Optional**, Title of the video, use filename if not provided.
 
-### `description`
+### `desc`
 
 **Optional**, Description of the video.
 
 ### `tags`
 
 **Optional**, Comma separated list of tags for the video.
+
+### `rate`
+
+**Optional**, Rating of the video: `like`, `dislike` or `none`.
+
+### `comment`
+
+**Optional**, Comment for the video.
 
 ### `output`
 
